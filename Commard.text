@@ -1,0 +1,57 @@
+//ใช้คำสั่งเพื่อตรวจสอบเวอชั่น
+docker -v
+
+/ใช้คำสั่งเพื่อตรวจสอบเวอชั่นของ docker compose
+docker run hello-world
+
+//ใช้คำสั่งเพื่อตรวจสอบ container ที่กำลังทำงานอยู่
+docker ps --all
+
+//ใช้คำสั่งเพื่อตรวจสอบ image ที่มีอยู่ในเครื่อง
+docker images
+
+//ใช้คำสั่งเพื่อหยุด container ที่กำลังทำงานอยู่
+docker stop <container_id>
+
+//ใช้คำสั่งเที่อิมเมจมาจาก Docker Hub
+docker pull <image_name>
+
+//ใช้คำสั่งเพื่อรัน container จาก image ที่ดึงมาจาก Docker Hub
+docker start <container_id>
+
+//ใช้คำสั่งเพื่อตรวจสอบ container ที่กำลังทำงานอยู่
+docker ps
+
+//ใช้คำสั่งเพื่อลบ container ที่ไม่ต้องการ
+docker rm <container_id>
+
+//ใช้คำสั่งเพื่อลบอิมเมจที่ไม่ต้องการทั้งหมด
+docker system prune 
+
+//ใช้ำคำสั่งเพื่อรับคอนเทนเนอที่ใช้ภาพ nginx
+docker run nginx
+
+//ใช้คำสั่งเพื่อเข้าไปในคอนเทนเนอร์ที่กำลังทำงานอยู่
+docker exec -it <container_id> sh
+
+//ใช้คำสั่งเพื่อเข้าไปในคอนเทนเนอร์ที่กำลังทำงานอยู่ด้วย bash
+docker exit -it <container_id> bash
+
+cd index.html//แสดงเนื้อหาของไฟล์ index.html ในคอนเทนเนอร์
+
+docker run -d -p 9000:80 nginx //ใช้คำสั่งเพื่อรันคอนเทนเนอร์ในโหมด detached และเชื่อมต่อพอร์ต 9000 ของเครื่อง host กับพอร์ต 80 ของคอนเทนเนอร์
+
+docker image inspect nginx //ใช้คำสั่งเพื่อแสดงรายละเอียดของอิมเมจ nginx
+
+docker pull wordpress //ใช้คำสั่งเพื่อดึงอิมเมจ wordpress จาก Docker Hub
+docker pull mysql:5.7 //ใช้คำสั่งเพื่อดึงอิมเมจ mysql จาก Docker Hub
+docker pull phpmyadmin/phpmyadmin //ใช้คำสั่งเพื่อดึงอิมเมจ phpmyadmin จาก Docker Hub
+
+docker network create wordpress  //ใช้คำสั่งเพื่อสร้างเครือข่ายที่ชื่อว่า wordpress
+docker network ls //ใช้คำสั่งเพื่อแสดงรายการเครือข่ายที่มีอยู่ในเครื่อง
+
+docker run --name mysql --network wordpress -e MYSQL_ROOT_PASSWORD=1111 -e MYSQL_DATABASE=wordpress_db -e MYSQL_USER=wordpress -e MYSQL_PASSWORD=wordpress -d mysql:5.7
+docker run --name pma --network wordpress -p 8888:80 -e PMA_ARBITRARY=1 -d phpmyadmin/phpmyadmin
+docker run -d --name wordpress --network wordpress -p 888:80 -e WORDPRESS_DB_HOST=mysql -e WORDPRESS_DB_USER=wordpress -e WORDPRESS_DB_PASSWORD=wordpress -e WORDPRESS_DB_NAME=wordpress_db wordpress
+
+password : #3spve%apSqjAGqkJ) //คือรหัสของเว็บ phpmyadmin ที่เราสร้างขึ้นมาในขั้นตอนก่อนหน้านี้
